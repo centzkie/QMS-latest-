@@ -154,7 +154,6 @@ const Form = () => {
   const userCollection2 = collection(db, "acadPriority");
   let fullStudentNumber = snYear + "-" + studentNumber + "-" + "SM-0";
 
-  const [isDisabled, setIsDisabled] = useState(true);
   const timezone = "Asia/Manila";
 
   // to disable time in specific time only
@@ -162,17 +161,13 @@ const Form = () => {
     const checkTime = () => {
       let currentTime = moment().tz(timezone);
       let startTime = moment.tz("08:00", "HH:mm a", timezone);
-      let endTime = moment.tz("20:00", "HH:mm a", timezone);
+      let endTime = moment.tz("10:25", "HH:mm a", timezone);
 
       if (currentTime.isBetween(startTime, endTime)) {
-        setIsDisabled(false);
         sessionStorage.setItem("Auth", "true");
       } else {
-        setIsDisabled(true);
         sessionStorage.setItem("Auth", "false");
       }
-      console.log(sessionStorage.getItem("Auth"));
-
     };
     const intervalId = setInterval(checkTime, 1000);
 
@@ -183,7 +178,6 @@ const Form = () => {
     if(sessionStorage.getItem("Auth") === "false"){
       navigate("/");
     }
-    console.log("Running");
   })
 
   const landing = () => {
