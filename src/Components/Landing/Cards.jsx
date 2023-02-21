@@ -36,7 +36,7 @@ const Cards = () => {
         sessionStorage.setItem("Auth", false);
       }
     };
-    const intervalId = setInterval(checkTime, 500);
+    const intervalId = setInterval(checkTime, 1000);
 
     return () => clearInterval(intervalId);
   }, []);
